@@ -11,3 +11,5 @@ def haversine(lat_from, long_from, lat_to, long_to):
 	arc = math.atan2(math.sqrt(a), math.sqrt(1-a))
 	distance = 2 * radius * arc
 	return distance
+
+
