@@ -1,18 +1,20 @@
 import sys
 
 class Charging_Station:
-    def __init__(self, node):
-        self.id = node
+    def __init__(self, node, station_name,_id, city, lat, lon):
+        self.distance = node
         self.adjacent = {}
         # Set distance to infinity for all nodes
         self.distance = sys.maxint
         # Mark all nodes unvisited        
         self.visited = False  
         # Predecessor
+	self._id = _id
         self.previous = None
-	self.station_name = ""
-	self.lat = 0
-	self.long = 0
+	self.station_name = station_name
+	self.lat = lat
+	self.lon = lon
+	self.city = city
 
     def add_neighbor(self, neighbor, weight=0):
         self.adjacent[neighbor] = weight

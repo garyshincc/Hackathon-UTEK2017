@@ -18,10 +18,14 @@ for charging_station in list_of_charging_stations:
 	lat_to = charging_station['latitude']
 	lon_to = charging_station['longitude']
 	distance = haversine(lat_from, lon_from, lat_to, lon_to)
-	us_map.add_c_s(distance)
+	station_name = charging_station['station_name']
+	city = charging_station['city']
+	_id = chargin_station['id']
+
+	us_map.add_c_s(distance, station_name, _id, city, lat_to,lon_to)
 
 for cs in us_map:
-	print cs
+	pass
 
 def make_graph(lat_from, long_from, lat_to, long_to):
 
@@ -32,8 +36,7 @@ def make_graph(lat_from, long_from, lat_to, long_to):
 		# Do an api call
 
 	else:
-		pass
-		#Use Dijkstra to find all charging points within range
+		pass #Use Dijkstra to find all charging points within range
 
 def shortestPath():
 	pass
