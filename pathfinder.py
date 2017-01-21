@@ -20,7 +20,7 @@ for charging_station in list_of_charging_stations:
 	distance = haversine(lat_from, lon_from, lat_to, lon_to)
 	station_name = charging_station['station_name']
 	city = charging_station['city']
-	_id = chargin_station['id']
+	_id = charging_station['id']
 
 	us_map.add_c_s(distance, station_name, _id, city, lat_to,lon_to)
 

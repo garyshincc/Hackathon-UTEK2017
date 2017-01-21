@@ -1,26 +1,29 @@
 import sys
 
 class Charging_Station:
-    def __init__(self, node, station_name,_id, city, lat, lon):
-        self.distance = node
-        self.adjacent = {}
-        # Set distance to infinity for all nodes
-        self.distance = sys.maxint
-        # Mark all nodes unvisited        
-        self.visited = False  
-        # Predecessor
-	self._id = _id
-        self.previous = None
-	self.station_name = station_name
-	self.lat = lat
-	self.lon = lon
-	self.city = city
+    def __init__(self, node_id, station_name, station_id, city, lat, long):
+        self.node_id = node_id
+        self.station_name = station_name
+        self.station_id = station_id
+        self.city = city
+        self.lat = lat
+        self.long = long
 
-    def add_neighbor(self, neighbor, weight=0):
+        # for pathfinding
+
+        self.previous = None
+        self.distance = sys.maxint
+        self.adjacent = {}
+
+    def __str__(self):
+        return str(self.station_name) + " at " + str(self.city)
+
+
+    def add_connection(self, neighbor, weight=0):
         self.adjacent[neighbor] = weight
 
-    def get_connections(self):
-        return self.adjacent.keys()  
+    def get_connections(self, _id):
+        return self.adjacent[_id]
 
     def get_id(self):
         return self.id
