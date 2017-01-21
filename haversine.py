@@ -8,6 +8,6 @@ def haversine(lat_from, long_from, lat_to, long_to):
 	dlat = lat_from - lat_to
 	dlon = long_from - long_to
 	a = ( math.sin((dlat)/2.0)**2.0 ) + ( math.cos(lat_to)*math.cos(lat_from)*math.sin(dlon/2.0)**2.0 )
-	arc = math.asin(math.sqrt(a))
+	arc = math.atan2(math.sqrt(a), math.sqrt(1-a))
 	distance = 2 * radius * arc
 	return distance

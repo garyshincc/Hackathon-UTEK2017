@@ -18,12 +18,13 @@ longest_distance = 100000
 it = 0
 
 for value in data.values()[1]:
-	address = value['street_address']
+	print value 
+	address = value['station_name']
 	lon = value['longitude']
 	lat = value['latitude']
 
+
 	distance = haversine(lat_from, lon_from, lat, lon)
-	print distance
 	if distance < longest_distance:
 		print str(distance) + " is shorter than " + str(longest_distance)
 		location = {
@@ -33,12 +34,13 @@ for value in data.values()[1]:
 			'distance':distance,
 		}
 		list_of_closest.append(location)
-		list_of_closest = sorted(list_of_closest, key = itemgetter('distance'))
+		new_list = sorted(list_of_closest, key = itemgetter('distance'))
+		list_of_closest = new_list
 		if len(list_of_closest) > 3:
 			list_of_closest = list_of_closest[:3]
 			
 		if len(list_of_closest) != 0:
-			longest_distance = distance
+			longest_distance = list_of_closest[len(list_of_closest) -1]['distance'] 
 
 for close in list_of_closest:
 	print close
