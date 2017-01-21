@@ -73,4 +73,3 @@ class Map:
 
     def get_previous(self, current):
         return self.previous
-
