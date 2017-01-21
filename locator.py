@@ -18,7 +18,7 @@ longest_distance = 100000
 it = 0
 
 for value in data.values()[1]:
-	print value 
+
 	address = value['station_name']
 	lon = value['longitude']
 	lat = value['latitude']
@@ -26,7 +26,6 @@ for value in data.values()[1]:
 
 	distance = haversine(lat_from, lon_from, lat, lon)
 	if distance < longest_distance:
-		print str(distance) + " is shorter than " + str(longest_distance)
 		location = {
 			'address':address,
 			'longitude':lon,
