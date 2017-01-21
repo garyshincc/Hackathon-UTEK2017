@@ -10,6 +10,9 @@ class Charging_Station:
         self.visited = False  
         # Predecessor
         self.previous = None
+	self.station_name = ""
+	self.lat = 0
+	self.long = 0
 
     def add_neighbor(self, neighbor, weight=0):
         self.adjacent[neighbor] = weight

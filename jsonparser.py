@@ -13,11 +13,15 @@ def jsonparser():
 		address = value['station_name']
 		lon = value['longitude']
 		lat = value['latitude']
+		city = value['city']
+		id = value['id']
 
 		my_dict = {
 		'station_name': address,
 		'latitude': lat,
 		'longitude': lon,
+		'city': city,
+		'id': id,
 		}
 
 		list_of_dicts.append(my_dict)
