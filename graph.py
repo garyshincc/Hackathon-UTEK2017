@@ -1,3 +1,5 @@
+import sys
+
 class Charging_Station:
     def __init__(self, node):
         self.id = node
