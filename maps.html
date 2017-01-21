@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>UTEK 2017</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=yes' />
+	<script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+	<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+	<style>
+		body { margin:0; padding:0; }
+		#map { position:absolute; top:0; bottom:0; width:100%; }
+	</style>
+</head>
+<body>
+	<div id='map'></div>
+	<script>
+		L.mapbox.accessToken = 'pk.eyJ1IjoicmV4eHh4IiwiYSI6ImNpeTd2N2piZDAwMzEzMm56ZDdhem1pZmwifQ.IbL7zjCEgWQef_s__YK8Lw';
+		var map = L.mapbox.map('map', 'mapbox.streets')
+		.setView([37.77, -122.43], 7);
+
+		L.mapbox.featureLayer({
+			type: 'Feature',
+			geometry: {
+			type: 'Point',
+			coordinates: [
+				-77.03221142292,
+				38.913371603574
+			]
+		},
+		properties: {
+		title: 'Destination',
+		description: '',
+		'marker-size': 'large',
+		'marker-color': '#ff0000',
+	}
+	}).addTo(map);		
+
+
+	</script>
+</body>
+</html>
