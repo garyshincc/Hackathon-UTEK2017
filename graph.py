@@ -1,13 +1,13 @@
 import sys
+from haversine import *
 
 class Charging_Station:
-    def __init__(self, node_id, station_name, station_id, city, lat, long):
-        self.node_id = node_id
+    def __init__(self, station_name, station_id, city, lat, lon):
         self.station_name = station_name
         self.station_id = station_id
         self.city = city
         self.lat = lat
-        self.long = long
+        self.lon = lon
 
         # for pathfinding
 
@@ -22,8 +22,8 @@ class Charging_Station:
     def add_connection(self, neighbor, weight=0):
         self.adjacent[neighbor] = weight
 
-    def get_connections(self, _id):
-        return self.adjacent[_id]
+    def get_connections(self, station_id):
+        return self.adjacent[station_id]
 
     def get_id(self):
         return self.id
@@ -43,21 +43,38 @@ class Charging_Station:
     def set_visited(self):
         self.visited = True
 
+    def get_latitude(self):
+        return float(self.lat)
+
+    def get_longitude(self):
+        return float(self.lon)
+
     def __str__(self):
-        return str(self.id) + ' adjacent: ' + str([x.id for x in self.adjacent])
+        return str(self.station_id) + ' adjacent: ' + str([x.station_id for x in self.adjacent])
 
 class Map:
     def __init__(self):
         self.vert_dict = {}
         self.num_vertices = 0
 
+    def __str__(self):
+        mystr = ''
+        for cs in self.vert_dict:
+            mystr + str(cs)
+        return mystr
+
     def __iter__(self):
         return iter(self.vert_dict.values())
 
-    def add_c_s(self, node):
+    def cost(self, current, next):
+        current = self.get_c_s(current)
+        next = self.get_c_s(next)
+        return haversine(current.get_latitude(), current.get_longitude(), next.get_latitude(), next.get_longitude())
+
+    def add_c_s(self, station_name, station_id, city, lat, long):
         self.num_vertices = self.num_vertices + 1
-        new_c_s = Charging_Station(node)
-        self.vert_dict[node] = new_c_s
+        new_c_s = Charging_Station(station_name, station_id, city, lat, long)
+        self.vert_dict[station_id] = new_c_s
         return new_c_s
 
     def get_c_s(self, n):
@@ -75,8 +92,8 @@ class Map:
         self.vert_dict[frm].add_neighbor(self.vert_dict[to], cost)
         self.vert_dict[to].add_neighbor(self.vert_dict[frm], cost)
 
-    def get_vertices(self):
-        return self.vert_dict.keys()
+    def get_vertices(self, current):
+        return self.vert_dict
 
     def set_previous(self, current):
         self.previous = current
